@@ -14,22 +14,62 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(
+background:
+linear-gradient(
 135deg,
 #0f172a,
 #312e81,
 #7c3aed,
 #ec4899
 );
+
 background-size:400% 400%;
-animation:gradient 12s ease infinite;
+
+animation:gradient 15s ease infinite;
 color:white;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-overflow:hidden;
+min-height:100vh;
+overflow-y:auto;
+overflow-x:hidden;
 text-align:center;
+}
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+}
+
+.polaroid{
+background:white;
+padding:12px;
+padding-bottom:40px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+border-radius:8px;
+transform:rotate(-3deg);
+transition:0.4s;
+}
+
+.polaroid:nth-child(even){
+transform:rotate(3deg);
+}
+
+.polaroid:hover{
+transform:scale(1.05);
+}
+
+.polaroid img{
+width:220px;
+height:auto;
+display:block;
 }
 @keyframes gradient{
 0%{background-position:0% 50%;}
@@ -144,6 +184,59 @@ animation:float 4s ease-in-out infinite;
 </head>
 
 <body>
+<div class="page" id="p4">
+
+<h1>📸 Beautiful Memories</h1>
+
+<div class="gallery">
+
+<div class="polaroid">
+<img src="Cherry1.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry2.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry3.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry4.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry5.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry6.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry7.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry8.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry9.png">
+</div>
+
+<div class="polaroid">
+<img src="Cherry10.png">
+</div>
+
+</div>
+
+<button onclick="nextPage(5)">
+Next ➜
+</button>
+
+</div>
 
 <div class="container">
 
@@ -156,7 +249,7 @@ animation:float 4s ease-in-out infinite;
 </button>
 
 <audio id="music" loop>
-  <source src="song.mp3" type="audio/mpeg">
+  <source src="Song.mp3" type="audio/mpeg">
 </audio>
 <p class="typewriter">
 Today is all about celebrating someone truly special.<br><br>
