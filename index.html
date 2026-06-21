@@ -36,57 +36,30 @@ text-align:center;
 
 padding:50px 20px;
 }
+
 @keyframes gradient{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
 }
-.gallery{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-margin-top:30px;
-}
 
-.polaroid{
-background:white;
-padding:12px;
-padding-bottom:40px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-border-radius:8px;
-transform:rotate(-3deg);
-transition:0.4s;
-}
-
-.polaroid:nth-child(even){
-transform:rotate(3deg);
-}
-
-.polaroid:hover{
-transform:scale(1.05);
-}
-
-.polaroid img{
-width:220px;
-height:auto;
-display:block;
-}
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
 .container{
 max-width:900px;
 margin:auto;
 padding:30px;
 animation:fadeIn 2s ease;
+position:relative;
+z-index:1;
 }
 
 h1{
 font-size:3rem;
 margin-bottom:20px;
+}
+
+h2{
+font-size:2rem;
+margin:40px 0 10px 0;
 }
 
 p{
@@ -117,13 +90,17 @@ from{opacity:0;transform:translateY(20px);}
 to{opacity:1;transform:translateY(0);}
 }
 
+/* Stars background - fixed so it stays put while you scroll, and
+   pointer-events:none so it never blocks clicks on buttons/links */
 .stars{
-position:absolute;
+position:fixed;
 width:100%;
 height:100%;
 top:0;
 left:0;
 overflow:hidden;
+pointer-events:none;
+z-index:0;
 }
 
 .star{
@@ -133,38 +110,22 @@ height:2px;
 background:white;
 animation:twinkle 3s infinite;
 }
+
+@keyframes twinkle{
+50%{opacity:0.2;}
+}
+
 .typewriter{
 overflow:hidden;
 white-space:pre-line;
 animation:typing 4s steps(100,end);
-}
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
-margin-top:20px;
-}
-
-.gallery img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:15px;
-transition:0.4s;
-box-shadow:0 4px 15px rgba(0,0,0,0.3);
-}
-
-.gallery img:hover{
-transform:scale(1.05);
 }
 
 @keyframes typing{
 from{max-height:0;}
 to{max-height:1000px;}
 }
-@keyframes twinkle{
-50%{opacity:0.2;}
-}
+
 .photo{
 width:300px;
 max-width:90%;
@@ -179,6 +140,56 @@ animation:float 4s ease-in-out infinite;
 @keyframes float{
 0%,100%{transform:translateY(0);}
 50%{transform:translateY(-10px);}
+}
+
+/* Polaroid photo gallery */
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+}
+
+.polaroid{
+background:white;
+padding:12px;
+padding-bottom:45px;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+border-radius:8px;
+transition:0.4s ease;
+position:relative;
+}
+
+.polaroid:nth-child(1){transform:rotate(-6deg);}
+.polaroid:nth-child(2){transform:rotate(4deg);}
+.polaroid:nth-child(3){transform:rotate(-3deg);}
+.polaroid:nth-child(4){transform:rotate(6deg);}
+.polaroid:nth-child(5){transform:rotate(-5deg);}
+.polaroid:nth-child(6){transform:rotate(3deg);}
+.polaroid:nth-child(7){transform:rotate(-4deg);}
+.polaroid:nth-child(8){transform:rotate(5deg);}
+.polaroid:nth-child(9){transform:rotate(-2deg);}
+.polaroid:nth-child(10){transform:rotate(4deg);}
+
+.polaroid:hover{
+transform:scale(1.08) rotate(0deg);
+z-index:10;
+}
+
+.polaroid img{
+width:200px;
+height:240px;
+object-fit:cover;
+display:block;
+border-radius:2px;
+}
+
+.polaroid p{
+color:#333;
+margin-top:10px;
+font-weight:600;
+font-size:0.95rem;
 }
 </style>
 </head>
@@ -199,6 +210,7 @@ animation:float 4s ease-in-out infinite;
 <audio id="music" loop>
   <source src="Song.mp3" type="audio/mpeg">
 </audio>
+
 <p class="typewriter">
 Today is all about celebrating someone truly special.<br><br>
 
@@ -208,6 +220,62 @@ and everything your heart wishes for.
 <br><br>
 Keep smiling ✨
 </p>
+
+<h2>📸 Beautiful Memories</h2>
+
+<div class="gallery">
+
+<div class="polaroid">
+<img src="Cherry1.png" alt="memory 1">
+<p>✨ Beautiful Smile</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry2.png" alt="memory 2">
+<p>🌙 Golden Moments</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry3.png" alt="memory 3">
+<p>💫 Pure Happiness</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry4.png" alt="memory 4">
+<p>🎈 Joyful Days</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry5.png" alt="memory 5">
+<p>🌸 Sweet Memory</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry6.png" alt="memory 6">
+<p>✨ Forever Cherished</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry7.png" alt="memory 7">
+<p>🎀 Cute Vibes</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry8.png" alt="memory 8">
+<p>🌟 Shining Bright</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry9.png" alt="memory 9">
+<p>💖 Heart Full</p>
+</div>
+
+<div class="polaroid">
+<img src="Cherry10.png" alt="memory 10">
+<p>🎂 Today's the Day</p>
+</div>
+
+</div>
 
 <a href="story.html">
 <button>Open The Story 📖</button>
@@ -241,7 +309,20 @@ document.getElementById('gift').style.display='block';
 }
 
 function playMusic(){
-document.getElementById('music').play();
+const music = document.getElementById('music');
+const playPromise = music.play();
+
+if (playPromise !== undefined) {
+  playPromise
+    .then(() => {
+      console.log('Music started playing');
+    })
+    .catch((error) => {
+      // This will tell you EXACTLY why it failed instead of failing silently
+      alert('Music could not play: ' + error.message + '\n\nCheck that Song.mp3 is in the same folder as index.html and was actually pushed to GitHub.');
+      console.error('Audio play failed:', error);
+    });
+}
 }
 
 for(let i=0;i<150;i++){
