@@ -14,7 +14,15 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f172a,#1e293b);
+background:linear-gradient(
+135deg,
+#0f172a,
+#312e81,
+#7c3aed,
+#ec4899
+);
+background-size:400% 400%;
+animation:gradient 12s ease infinite;
 color:white;
 display:flex;
 justify-content:center;
@@ -23,7 +31,11 @@ height:100vh;
 overflow:hidden;
 text-align:center;
 }
-
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
 .container{
 max-width:700px;
 padding:30px;
@@ -83,16 +95,39 @@ animation:twinkle 3s infinite;
 @keyframes twinkle{
 50%{opacity:0.2;}
 }
+.photo{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid rgba(255,255,255,0.4);
+box-shadow:0 0 30px rgba(255,255,255,0.3);
+margin-bottom:25px;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-
 <div class="container">
-<h1>🎂 Happy Birthday</h1>
 
+<img src="Cherry.png" class="photo" alt="Birthday Girl">
+
+<h1>🎂 Happy Birthday Cherry ✨</h1>
+
+<button onclick="playMusic()">
+🎵 Play This Before Reading
+</button>
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 <p>
 Today is all about celebrating someone truly special.<br><br>
 
@@ -103,20 +138,39 @@ and everything your heart wishes for.
 Keep smiling ✨
 </p>
 
-<button onclick="showMessage()">Open Your Gift 🎁</button>
+<a href="story.html">
+<button>Open The Story 📖</button>
+</a>
 
 <div id="gift" class="hidden">
-Among billions of people,
-some make the world brighter just by being themselves.
 
-Happy Birthday ❤️
+💌 A Special Note
+
+Among billions of people,
+it's amazing how one person can make ordinary days feel special.
+
+May your smile never fade,
+your dreams come true,
+and your heart always find happiness.
+
+Thank you for being the wonderful person you are.
+
+Happy Birthday Cherry ❤️
+
+— Sameer ✨
+
 </div>
 
 </div>
 
 <script>
+
 function showMessage(){
 document.getElementById('gift').style.display='block';
+}
+
+function playMusic(){
+document.getElementById('music').play();
 }
 
 for(let i=0;i<150;i++){
@@ -127,6 +181,7 @@ star.style.top=Math.random()*100+'%';
 star.style.animationDelay=Math.random()*3+'s';
 document.querySelector('.stars').appendChild(star);
 }
+
 </script>
 
 </body>
