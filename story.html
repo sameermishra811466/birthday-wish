@@ -204,6 +204,84 @@ font-weight:600;
 font-family:'Georgia',serif;
 }
 
+/* ---------- Candle blow scene ---------- */
+.cake-scene{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.cake-emoji{
+font-size:5rem;
+position:relative;
+}
+
+.candle-wrap{
+position:relative;
+margin-top:-18px;
+height:40px;
+width:30px;
+}
+
+.flame{
+font-size:1.8rem;
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+cursor:pointer;
+animation:flicker 0.6s ease-in-out infinite alternate;
+transition:opacity 0.4s ease, transform 0.4s ease;
+}
+
+@keyframes flicker{
+0%{transform:translateX(-50%) scale(1) rotate(-2deg);}
+100%{transform:translateX(-50%) scale(1.15) rotate(2deg);}
+}
+
+.flame.out{
+opacity:0;
+transform:translateX(-50%) scale(0.3);
+}
+
+.smoke{
+position:absolute;
+top:0;
+left:50%;
+width:6px;
+height:6px;
+background:rgba(255,255,255,0.6);
+border-radius:50%;
+animation:smokeRise 1.6s ease-out forwards;
+pointer-events:none;
+}
+
+@keyframes smokeRise{
+0%{
+opacity:0.7;
+transform:translate(-50%,0) scale(1);
+}
+100%{
+opacity:0;
+transform:translate(-50%,-60px) scale(2.5);
+}
+}
+
+.blow-hint{
+margin-top:18px;
+font-size:1rem;
+opacity:0.85;
+}
+
+.reveal-content{
+display:none;
+}
+
+.reveal-content.show{
+display:block;
+animation:fade 1.5s;
+}
+
 </style>
 
 </head>
@@ -383,6 +461,22 @@ Final Surprise 🎁
 
 <div class="page" id="p5">
 
+<div class="cake-scene" id="cakeScene">
+
+<div class="cake-emoji">🎂</div>
+
+<div class="candle-wrap">
+<div class="flame" id="flame" onclick="blowCandle()">🔥</div>
+</div>
+
+<p class="blow-hint" id="blowHint">
+Make a wish, then tap the flame to blow it out 🕯️
+</p>
+
+</div>
+
+<div class="reveal-content" id="revealContent">
+
 <img src="Cherry.png" width="220">
 
 <h1>Happy Birthday Cherry ❤️</h1>
@@ -410,6 +504,8 @@ find its way to reality.
 
 </div>
 
+</div>
+
 <script>
 
 function nextPage(num){
@@ -424,6 +520,31 @@ document.getElementById('p'+num)
 
 function openBook(){
 document.getElementById('cover').classList.add('hide');
+}
+
+function blowCandle(){
+const flame = document.getElementById('flame');
+
+if(flame.classList.contains('out')) return;
+
+flame.classList.add('out');
+
+// spawn a few smoke puffs
+const wrap = flame.parentElement;
+for(let i=0;i<5;i++){
+let puff = document.createElement('div');
+puff.classList.add('smoke');
+puff.style.left = (45 + Math.random()*10) + '%';
+puff.style.animationDelay = (i*0.12) + 's';
+wrap.appendChild(puff);
+}
+
+document.getElementById('blowHint').textContent = '✨ Wish made ✨';
+
+setTimeout(()=>{
+document.getElementById('cakeScene').style.display = 'none';
+document.getElementById('revealContent').classList.add('show');
+}, 1200);
 }
 
 function playMusic(){
